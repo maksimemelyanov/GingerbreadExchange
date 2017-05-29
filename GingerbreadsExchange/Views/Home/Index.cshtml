@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Биржа пряников";
+}
+@using GingerbreadsExchange.Models;
+
+     
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Покупка</h2>
+        <p>
+            <form action="/Home/Buy" method="post">
+                <label>Цена за шт.: </label>
+                <br />
+                <input type="number" name="price" step="0.01" required/><br />
+                <label>Количество: </label>
+                <br />
+                <input type="number" name="count" required/><br />
+                <label>Почта: </label>
+                <br />
+                <input type="email" name="mail" /><br />
+                <input type="submit" title="Отправить"/>
+            </form>
+            <hr />
+            <h3>Ордера на продажу</h3>
+            <table border="1">
+                <tr>
+                    <th>Количество</th>
+                    <th>Цена за шт.</th>
+                    <th>Почта</th>
+                </tr>
+
+                @foreach (Selling item in ViewBag.Sellings)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Count)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mail)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </p>
+        
+    </div>
+    <div class="col-md-6">
+        <h2>Продажа</h2>
+        <form action="/Home/Sell" method="post">
+            <label>Цена за шт.: </label>
+            <br />
+            <input type="number" name="price" step="0.01" required/><br />
+            <label>Количество: </label>
+            <br />
+            <input type="number" name="count" required/><br />
+            <label>Почта: </label>
+            <br />
+            <input type="email" name="mail" /><br />
+            <input type="submit" title="Отправить" />
+        </form>
+        <hr />
+        <h3>Ордера на покупку</h3>
+        <table border="1">
+            <tr>
+                <th>Количество</th>
+                <th>Цена за шт.</th>
+                <th>Почта</th>
+            </tr>
+
+            @foreach (Buying item in ViewBag.Buyings)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mail)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+   
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Завершенные сделки</h2>
+        <p> 
+            <table border="1">
+                <tr>
+                    <th>Выполнено</th>
+                    <th>Дата П</th>
+                    <th>Дата К</th>
+                    <th>Количество</th>
+                    <th>Цена за шт.</th>
+                    <th>Почта П</th>
+                    <th>Почта К</th>
+                </tr>
+
+                @foreach (History item in ViewBag.History)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Timestamp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Selling.Timestamp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Buying.Timestamp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Count)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Selling.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Selling.Mail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Buying.Mail)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </p>
+
+    </div>
+</div>
