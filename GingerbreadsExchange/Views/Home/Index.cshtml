@@ -7,6 +7,16 @@
 
 
 <div class="row">
+    @using (Html.BeginForm("ChangeCulture", "Home"))
+    {
+        <select name="currency">
+            @foreach (Currency item in ViewBag.Currencies)
+            {
+            <option value="@item.Name">@item.Name</option>
+            }
+        </select>
+        <input type="submit" name="submit" value="Подтвердить">
+    }
     <div class="col-md-6">
         <h2>Покупка</h2>
         <p>
@@ -35,13 +45,13 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Count)
+                            @item.Count
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Price)
+                            @((decimal)(item.Price / ViewBag.Ratio))
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Mail)
+                            @item.Mail
                         </td>
                     </tr>
                 }
@@ -77,13 +87,13 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Count)
+                        @item.Count
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        @((decimal)(item.Price / ViewBag.Ratio))
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Mail)
+                        @item.Mail
                     </td>
                 </tr>
             }
@@ -124,7 +134,7 @@
                             @Html.DisplayFor(modelItem => item.Count)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Selling.Price)
+                            @((decimal)(item.Selling.Price / ViewBag.Ratio))
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Selling.Mail)

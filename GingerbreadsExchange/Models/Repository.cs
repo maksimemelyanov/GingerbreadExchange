@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GingerbreadsExchange.Models
 {
-    public class Repository
+    public class Repository : IDisposable
     {
 
         public ExchangeContext context = new ExchangeContext();
@@ -23,6 +23,16 @@ namespace GingerbreadsExchange.Models
         public IEnumerable<History> History
         {
             get { return context.History; }
+        }
+
+        public IEnumerable<Currency> Currencies
+        {
+            get { return context.Currencies; }
+        }
+
+        public void Dispose()
+        {
+            context.Dispose();
         }
     }
 }

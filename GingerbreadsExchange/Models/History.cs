@@ -15,6 +15,7 @@ namespace GingerbreadsExchange.Models
         public virtual Selling Selling { get; protected set; }
         public virtual Buying Buying { get; protected set; }
         public long Count { get; protected set; }
+        public Status Status { get; protected set; }
         public History(Selling s, Buying b, long c)
         {
             Timestamp = DateTime.Now;
@@ -26,6 +27,11 @@ namespace GingerbreadsExchange.Models
         public History()
         {
 
+        }
+
+        public void SetStatus (Status s)
+        {
+            Status = s;
         }
 
     }

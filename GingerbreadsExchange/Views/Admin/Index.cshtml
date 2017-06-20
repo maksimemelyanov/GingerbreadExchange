@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+@using GingerbreadsExchange.Models;
+@model List<History>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <p>
+            <table border="1">
+                <tr>
+                    <th>Выполнено</th>
+                    <th>Дата П</th>
+                    <th>Дата К</th>
+                    <th>Количество</th>
+                    <th>Цена за шт.</th>
+                    <th>Почта П</th>
+                    <th>Почта К</th>
+                    <th>Статус</th>
+                    <th>Статус</th>
+                </tr>
+                @foreach (History item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Timestamp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Selling.Timestamp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Buying.Timestamp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Count)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Selling.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Selling.Mail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Buying.Mail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Подтвердить", "Verify", new { id = item.Id }) |
+                            @Html.ActionLink("Отклонить", "Reject", new { id = item.Id })
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </p>
+    </div>
+</body>
+</html>

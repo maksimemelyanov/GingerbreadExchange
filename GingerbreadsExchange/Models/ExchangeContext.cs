@@ -11,5 +11,6 @@ namespace GingerbreadsExchange.Models
         public DbSet<Buying> Buyings { get; set; }
         public DbSet<Selling> Sellings { get; set; }
         public DbSet<History> History { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
     }
 }
